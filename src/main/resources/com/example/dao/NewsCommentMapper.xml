@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.NewsCommentMapper">
+
+ 	<insert id='insert' parameterType="NewsComment"
+			keyColumn="cid" keyProperty="cid">
+ 		insert into news_comment(newsId,content,cauthor,ccreatedate) values(#{newsId},#{content},#{cauthor},#{ccreatedate})
+ 	</insert>
+
+	<delete id="deleteByNewsId">
+		delete from news_comment where newsId=#{newsId}
+	</delete>
+
+	<select id="selectAll" resultType="map">
+		select * from news_comment nc right join news_detail nd
+			    on nc.newsId=nd.id
+	</select>
+
+</mapper>

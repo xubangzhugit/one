@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>news</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        .odd{background-color: #cccccc}
+    </style>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>TITLE</th>
+        <th>AUTHOR</th>
+        <th>CDATE</th>
+        <th>CONTENT</th>
+    </tr>
+    <tr th:each="n,nsStat:${comments}" th:class="${nsStat.odd}?'odd'">
+        <td th:text="${n.id}">Onions</td>
+        <td th:text="${n.title}">2.41</td>
+        <td><input th:value="${n.author}" value="author"/></td>
+        <td th:text="${#dates.format(n.createdate,'yyyy-MM-dd')}"></td>
+        <td><input th:value="${n.content}" value="content"/></td>
+    </tr>
+</table>
+</body>
+</html>

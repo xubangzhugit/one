@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        .odd{background-color: #cccccc}
+    </style>
+    <script th:inline="javascript">
+        var name = [[${name}]];
+        //alert(name);
+    </script>
+</head>
+<body>
+<p th:text="'Hello！, '+${name}+'!'">默认</p>
+<div th:text="${session.nd.title}" th:style="'width:'+ @{50/100*100}+'%;border: solid 1px red; background-color: #cccccc'">div</div>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>TITLE</th>
+        <th>BOOL1</th>
+        <th>BOOL2</th>
+    </tr>
+
+    <tr th:each="n,nsStat:${list}" th:class="${nsStat.odd}?'odd'">
+        <td th:text="${n.id}">Onions</td>
+        <td th:text="${n.title}">2.41</td>
+        <td th:text="${nsStat.index==0}?'true':'false'">0</td>
+        <!-- 比较写在里外都可以 -->
+        <td th:if="${nsStat.index} lt 1" th:text="111">0</td>
+        <td th:unless="${nsStat.index lt 1}" th:text="222">0</td>
+    </tr>
+
+</table>
+
+<select id="n1">
+    <option th:each="c:${list}" th:value="${c.id}" th:text="${c.title}">默认</option>
+</select>
+
+<select id="n2" th:field="*{entity.id}">
+    <option th:each="c:${list}" th:value="${c.id}" th:text="${c.title}">选项</option>
+</select>
+
+<img src="images/login.gif" alt="无法显示"/>
+</body>
+</html>

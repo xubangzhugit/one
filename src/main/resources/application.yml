@@ -1,0 +1,75 @@
+server:
+  servlet:
+    context-path: /boot
+
+mybatis:
+  type-aliases-package: com.example.pojo
+  mapper-locations: classpath:com/example/dao/*.xml
+  configuration:
+    auto-mapping-behavior: full
+    use-generated-keys: true
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  page-size-zero: true
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///news
+    username: root
+    password: root
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm
+    time-zone: GMT+8
+
+
+#spring:
+  #静态文件请求匹配方式
+  mvc:
+    static-path-pattern: /**
+  #修改默认的静态寻址资源目录
+  resources:
+    static-locations: classpath:/templates/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+
+#thymeleaf start
+  thymeleaf:
+    encoding: UTF-8
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+#thymeleaf end
+
+# Redis数据库
+  redis:
+    database: 0
+    host: startym.cn
+    port: 6388
+    password: root123star
+    timeout: 60s
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 5
+        min-idle: -1
+
+# mongodb数据库
+  data:
+    mongodb:
+      #uri: mongodb://testrw:testrw@localhost:27017/test
+      uri: mongodb://localhost:27017/test
+
+#springboot2.1报spring.main.allow-bean-definition-overriding=true
+  main:
+    allow-bean-definition-overriding: true
+
+#默认支持文件上传:本示例上传七牛云
+  #servlet:
+    #multipart:
+      #enabled: true
+      #max-file-size: 10M        #单文件大小
+      #max-request-size: 100M    #总大小
+

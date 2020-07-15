@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: demor Maven Webapp
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: 许邦柱
+Implementation-Vendor-Id: com.example
+Build-Jdk: 1.8.0_181
+Implementation-URL: http://www.example.com
+Created-By: Maven Integration for Eclipse
+

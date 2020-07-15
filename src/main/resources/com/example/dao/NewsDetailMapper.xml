@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.NewsDetailMapper">
+
+ 	<select id='findAllNews' resultType="NewsDetail" >
+ 		select * from news_detail order by createdate desc
+ 	</select>
+
+	<select id='findNewsById' resultType="NewsDetail" >
+		select * from news_detail where id=#{id}
+	</select>
+	
+	<delete id="deleteById">
+		delete from news_detail where id=#{id}
+	</delete>
+
+</mapper>
