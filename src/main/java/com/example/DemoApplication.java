@@ -18,6 +18,6 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class,args);
 		/*SpringApplication app = new SpringApplication(DemoApplication.class);
 		app.setBannerMode(Banner.Mode.OFF);// 关闭启动Banner
-		app.run(args);*/
+		app.run(args);*/    
 	}
 }
