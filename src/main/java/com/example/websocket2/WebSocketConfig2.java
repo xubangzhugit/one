@@ -17,7 +17,7 @@ public class WebSocketConfig2 implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(chatMessageHandler(),"/websocket2").addInterceptors(chatInterceptor());
-        // 如果浏览器不支持websocket，使用socketjs模拟websocket的连接
+        // 如果浏览器不支持websocket，使用socketjs模拟websocket的连接 xubangzhu
         // registry.addHandler(chatMessageHandler(), "/sockjs/websocket2").addInterceptors(new ChatHandshakeInterceptor()).withSockJS();
     }
 
