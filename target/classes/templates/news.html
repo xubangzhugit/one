@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>news</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        .odd{background-color: #cccccc}
+    </style>
+</head>
+<body>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>TITLE</th>
+        <th>AUTHOR</th>
+        <th>CDATE</th>
+    </tr>
+    <tr th:each="n,nsStat:${list}" th:class="${nsStat.odd}?'odd'">
+        <td th:text="${n.id}">Onions</td>
+        <td th:text="${n.title}">2.41</td>
+        <td><input th:value="${n.author}" value="author"/></td>
+        <td th:text="${#dates.format(n.createdate,'yyyy年MM月dd日')}"></td>
+    </tr>
+</table>
+<input th:value="${list[0].createdate}"/>
+<input th:value="${#numbers.formatDecimal(12.345,3,2)}"/>
+
+<div th:include="comment.html">div</div>
+<!--<iframe src="comment.html"></iframe>-->
+</body>
+</html>

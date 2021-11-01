@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script>
+        $(function () {
+            //返回?后的json对象
+            function getRequest() {
+                //获取url中"?"符后的字串
+                var url = location.search;
+                var theRequest = new Object();
+                if (url.indexOf("?") != -1) {
+                    var str = url.substr(1);
+                    var strs = str.split("&");
+                    for(var i = 0; i < strs.length; i ++) {
+                        theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+                    }
+                }
+                //alert(theRequest.id)
+                return theRequest;
+            }
+
+            $('#newsId').val(getRequest().id);
+            $('#btn').click(function(){
+                location.href="index.html";
+            });
+        })
+    </script>
+</head>
+<body style="text-align: center">
+    <h3>增加评论</h3>
+    <form action="save" method="post">
+        <table id="all" border="1" width="80%">
+            <tr>
+                <td>评论内容(*)</td>
+                <td>
+                    <textarea name="content" cols="80"></textarea>
+                    <input name="newsId" id="newsId" type="hidden"/>
+                </td>
+            </tr>
+            <tr>
+                <td>评论人</td>
+                <td  align="left"><input name="cauthor"/></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="提交"/>
+                    <input type="button" id="btn" value="返回"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

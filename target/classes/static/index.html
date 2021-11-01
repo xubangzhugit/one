@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/main.css" type="text/css" rel="stylesheet">
+<script src="js/jquery-1.8.3.min.js"></script>
+<script>
+	$(function () {
+
+		function init() {
+
+		    $('#tb tr').remove();
+            $.post('findNews',{},function (r) {
+                var html = "";
+                $.each(r,function (i,e) {
+                    html+="<tr align='center'>" +
+                        "<td>"+e.id+"</td>" +
+                        "<td>"+e.title+"</td>" +
+                        "<td>"+e.summary+"</td>" +
+                        "<td>"+e.author+"</td>" +
+                        "<td>"+e.createdate+"</td>" +
+                        "<td>" +
+                        "<a href='add.html?id="+e.id+"'>评论</a> " +
+                        "<a href='javascript:void(0)' class='delNews'>删除</a>" +
+                        "</td></tr>";
+                });
+                $('#all').append(html);
+                $('#all').find('tr:even').css("background-color","#cccccc");
+            });
+        };
+
+        window.onload=init;
+
+        $("a.delNews").live("click",function () {
+            var $this = $(this);
+            var id = $this.parents("tr").children("td:first").text();
+            //alert(id);
+            if(confirm('确定要删除?')){
+                $.post('delete',{id:id},function (r) {
+                    if(r=='success'){
+                        $('#msg').html('删除成功！');
+                        $this.parents('tr').remove();
+                        $('#all tr').css("background-color","#ffffff");
+                        $('#all tr:odd').css("background-color","#cccccc");
+                    }else{
+                        $('#msg').html('删除失败！');
+                    }
+                });
+            }
+        });
+	})
+
+
+</script>
+</head>
+<body>
+	<h3>新闻列表</h3>
+	<table id="all" border="1" align="center" width="90%">
+		<thead style="background-color: #cccccc" align="center">
+			<td>新闻编号</td>
+			<td>新闻标题</td>
+			<td>新闻摘要</td>
+			<td>作者</td>
+			<td>创建时间</td>
+			<td>操作</td>
+		</thead>
+		<tbody id="tb"></tbody>
+	</table>
+	<div id="msg"></div>
+	<img src="images/login.gif" alt="无法显示"/>
+</body>
+</html>
